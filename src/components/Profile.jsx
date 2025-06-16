@@ -16,8 +16,12 @@ import {
   VStack,
 } from "@chakra-ui/react";
 
+
 import { profileInformation } from "../../data";
-import { FaGithub, FaFacebook, FaTwitter, FaLinkedin } from "react-icons/fa";
+import { FaGithub } from "react-icons/fa";
+import { FaFacebook } from "react-icons/fa";
+import { FaTwitter } from "react-icons/fa";
+import { FaLinkedin } from "react-icons/fa";
 import { profileConversations } from "../../data";
 import { profileProjectsSummary } from "../../data";
 import {
@@ -33,6 +37,7 @@ import {
 } from "recharts";
 
 const ProfileCard = lazy(() => import("./ProfileCard.jsx"));
+
 
 export default function Profile() {
   const colors = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "red", "pink"];
@@ -99,14 +104,22 @@ export default function Profile() {
   return (
     <Box as="section">
       <Grid templateColumns="1fr" gap={10}>
+        {/* Header Section */}
+
         <ProfileCard />
 
+        {/* Profile Cards Section */}
         <GridItem>
           <Grid templateColumns={{ base: "1fr", xl: "repeat(3, 1fr)" }} gap={4}>
             <GridItem bg="white" shadow="lg" rounded="lg">
               <Card>
                 <CardHeader>
-                  <Heading pt="2" fontSize="lg" textTransform="uppercase" fontWeight="extrabold">
+                  <Heading
+                    pt="2"
+                    fontSize="lg"
+                    textTransform="uppercase"
+                    fontWeight="extrabold"
+                  >
                     Profile Information
                   </Heading>
                 </CardHeader>
@@ -124,42 +137,68 @@ export default function Profile() {
                       <Heading size="md" textTransform="uppercase">
                         FULL NAME: {profileInformation.name}
                       </Heading>
-                      <Text pt="2" fontSize="md" textTransform="uppercase" fontWeight="extrabold">
+                      <Text
+                        pt="2"
+                        fontSize="md"
+                        textTransform="uppercase"
+                        fontWeight="extrabold"
+                      >
                         ROLE: {profileInformation.role}
                       </Text>
-                      <Text pt="2" fontSize="md" textTransform="uppercase" fontWeight="extrabold">
+                      <Text
+                        pt="2"
+                        fontSize="md"
+                        textTransform="uppercase"
+                        fontWeight="extrabold"
+                      >
                         MOBILE: {profileInformation.phone}
                       </Text>
                     </Box>
                     <Box>
-                      <Heading pt="2" fontSize="md" textTransform="uppercase" fontWeight="extrabold">
+                      <Heading
+                        pt="2"
+                        fontSize="md"
+                        textTransform="uppercase"
+                        fontWeight="extrabold"
+                      >
                         LOCATION: {profileInformation.location}
                       </Heading>
-                      <Text pt="2" fontSize="lg" textTransform="uppercase" fontWeight="extrabold">
-                        Social:
-                        <Icon as={FaGithub} mx={1} />
-                        <Icon as={FaFacebook} color="blue" mx={1} />
-                        <Icon as={FaLinkedin} mx={1} />
-                        <Icon as={FaTwitter} mx={1} />
+                      <Text
+                        pt="2"
+                        fontSize="lg"
+                        textTransform="uppercase"
+                        fontWeight="extrabold"
+                      >
+                        social: <Icon as={FaGithub} />{" "}
+                        <Icon as={FaFacebook} color="blue" />{" "}
+                        <Icon as={FaLinkedin} /> <Icon as={FaTwitter} />
                       </Text>
                     </Box>
                   </Stack>
                 </CardBody>
               </Card>
               <Grid templateColumns="1fr" gap={6} m="10" fontSize="18px">
-                {[
-                  { label: "Total Earnings", value: "$53,878", trend: "+3.4%", color: "green" },
-                  { label: "Total Users", value: "$3,478", trend: "+5.4%", color: "green" },
-                  { label: "Today's Client", value: "$53,878", trend: "-1.4%", color: "red" },
-                ].map((item, index) => (
-                  <GridItem key={index} w="100%" shadow="xl" p="4" cursor="pointer">
-                    <Text>{item.label}</Text>
-                    <Text>{item.value}</Text>
-                    <Text color={item.color} fontWeight="bold">
-                      {item.trend}
-                    </Text>
-                  </GridItem>
-                ))}
+                <GridItem w="100%" shadow="xl" p="4" cursor="pointer">
+                  <Text>Total Earnings</Text>
+                  <Text>$53,878</Text>
+                  <Text color="green" fontWeight="bold">
+                    +3.4%
+                  </Text>
+                </GridItem>
+                <GridItem w="100%" shadow="xl" p="4" cursor="pointer">
+                  <Text>Total Users</Text>
+                  <Text>$3,478</Text>
+                  <Text color="green" fontWeight="bold" cursor="pointer">
+                    +5.4%
+                  </Text>
+                </GridItem>
+                <GridItem w="100%" shadow="xl" p="4" cursor="pointer">
+                  <Text>Today's Client</Text>
+                  <Text>$53,878</Text>
+                  <Text color="red" fontWeight="bold">
+                    -1.4%
+                  </Text>
+                </GridItem>
               </Grid>
             </GridItem>
 
@@ -174,18 +213,28 @@ export default function Profile() {
                       {profileConversations.map((profile, index) => (
                         <Card key={index}>
                           <CardBody>
-                            <Box display={{ lg: "flex" }} justifyContent="space-between" gap={2}>
-                              <Box>
+                            <Box
+                              as="div"
+                              display={{ lg: "flex" }}
+                              justifyContent="space-between"
+                              gap={2}
+                            >
+                              <Box as="div">
                                 <Image
                                   boxSize={50}
                                   src={profile.avatar}
-                                  alt={`Avatar of ${profile.subject}`}
+                                  alt="Dan Abramov"
                                 />
                                 <Text as="h3">{profile.subject}</Text>
-                                <Text as="p">{profile.message}</Text>
+                                <Box as="div">
+                                  <Text as="p">{profile.message}</Text>
+                                </Box>
                               </Box>
-                              <Button bg={profile.read ? "blue.500" : "gray.300"}>
-                                {profile.read ? "Reply" : "Read"}
+
+                              <Button
+                                bg={profile.read ? "blue.500" : "gray.300"}
+                              >
+                                {profile.read ? "reply" : "read"}
                               </Button>
                             </Box>
                           </CardBody>
@@ -193,7 +242,7 @@ export default function Profile() {
                       ))}
                     </Stack>
                   ) : (
-                    <Text p={4} fontStyle="italic" color="gray.600">
+                    <Text p={4} fontStyle="italic" color="gray.500">
                       No recent conversations available.
                     </Text>
                   )}
@@ -203,23 +252,33 @@ export default function Profile() {
 
             <GridItem bg="white" shadow="lg" rounded="lg">
               <Text as="h2" fontSize="18px" fontWeight="bold" p="4">
-                Earnings Overview
+                Earnings OverView
               </Text>
-              <Box w="100%" h={400}>
+              <div style={{ width: "100%", height: 400 }}>
                 <ResponsiveContainer>
-                  <BarChart data={dataBar} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
+                  <BarChart
+                    data={dataBar}
+                    margin={{ top: 20, right: 30, left: 10, bottom: 5 }}
+                  >
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="name" />
                     <YAxis />
-                    <Bar dataKey="uv" shape={<TriangleBar />} label={{ position: "top" }}>
+                    <Bar
+                      dataKey="uv"
+                      shape={<TriangleBar />}
+                      label={{ position: "top" }}
+                    >
                       {dataBar.map((entry, index) => (
-                        <Cell key={`cell-${index}`} fill={colors[index % colors.length]} />
+                        <Cell
+                          key={`cell-${index}`}
+                          fill={colors[index % colors.length]}
+                        />
                       ))}
                     </Bar>
                   </BarChart>
                 </ResponsiveContainer>
-              </Box>
-              <Box w="100%" h={400}>
+              </div>
+              <div style={{ width: "100%", height: 400 }}>
                 <Text as="h2" fontSize="18px" fontWeight="bold" p="4">
                   Total Performance
                 </Text>
@@ -236,20 +295,31 @@ export default function Profile() {
                       dataKey="value"
                     >
                       {dataPie.map((entry, index) => (
-                        <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                        <Cell
+                          key={`cell-${index}`}
+                          fill={COLORS[index % COLORS.length]}
+                        />
                       ))}
                     </Pie>
                   </PieChart>
                 </ResponsiveContainer>
-              </Box>
+              </div>
             </GridItem>
           </Grid>
         </GridItem>
 
+        {/* Footer / Note Section */}
+
         <GridItem color="white" borderRadius="lg">
           <Text as="h2">Projects</Text>
+
           <Grid
-            templateColumns={{ base: "1fr", md: "1fr 1fr", xl: "repeat(4, 1fr)" }}
+            templateColumns={{
+              base: "1fr",
+              md: "1fr 1fr",
+              lg: "1fr 1fr",
+              xl: "repeat(4, 1fr)",
+            }}
             justifyContent="center"
             gap={6}
           >
@@ -261,17 +331,18 @@ export default function Profile() {
                       <Text fontWeight="bold" fontSize="lg">
                         {project.name}
                       </Text>
-                      <Text color="gray.700" fontSize="sm">
+                      <Text color="gray.500" fontSize="sm">
                         Status: {project.status}
                       </Text>
                       <Progress
                         value={project.progress}
-                        colorScheme={project.progress === 100 ? "green" : "blue"}
+                        colorScheme={
+                          project.progress === 100 ? "green" : "blue"
+                        }
                         hasStripe
                         isAnimated
                         w="100%"
                         borderRadius="md"
-                        aria-label={`${project.name} progress is ${project.progress}%`}
                       />
                       <Text fontSize="xs">{project.progress}% complete</Text>
                     </VStack>
