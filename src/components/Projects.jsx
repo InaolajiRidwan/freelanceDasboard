@@ -58,10 +58,7 @@ export default function Projects() {
                             {project.image ? (
                               <Image
                                 boxSize={{ base: "300px" }}
-                                src={
-                                  project.image ||
-                                  "https://via.placeholder.com/300x200"
-                                }
+                                src={project.image}
                                 alt={project.name}
                               />
                             ) : (
@@ -84,7 +81,7 @@ export default function Projects() {
                                     textAlign="center"
                                     textTransform="uppercase"
                                   >
-                                    Add new Project{" "}
+                                    Add new Project
                                   </Text>
                                 )}
                               </Heading>
