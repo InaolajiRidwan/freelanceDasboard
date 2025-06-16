@@ -16,7 +16,7 @@ import {
   VStack,
 } from "@chakra-ui/react";
 
-
+import ProfileCard from "./ProfileCard.jsx";
 import { profileInformation } from "../../data";
 import { FaGithub } from "react-icons/fa";
 import { FaFacebook } from "react-icons/fa";
@@ -35,9 +35,6 @@ import {
   PieChart,
   Pie,
 } from "recharts";
-
-const ProfileCard = lazy(() => import("./ProfileCard.jsx"));
-
 
 export default function Profile() {
   const colors = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "red", "pink"];
@@ -225,14 +222,15 @@ export default function Profile() {
                                   src={profile.avatar}
                                   alt="Dan Abramov"
                                 />
-                                <Text as="h3">{profile.subject}</Text>
+                                <Text as="h3" pt="4">{profile.subject}</Text>
                                 <Box as="div">
-                                  <Text as="p">{profile.message}</Text>
+                                  <Text as="p" pt="5">{profile.message}</Text>
                                 </Box>
                               </Box>
 
                               <Button
                                 bg={profile.read ? "blue.500" : "gray.300"}
+                                p={{base: "10px" , lg: "30px"}}
                               >
                                 {profile.read ? "reply" : "read"}
                               </Button>
