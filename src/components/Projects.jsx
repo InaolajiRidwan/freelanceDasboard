@@ -58,7 +58,10 @@ export default function Projects() {
                             {project.image ? (
                               <Image
                                 boxSize={{ base: "300px" }}
-                                src={project.image}
+                                src={
+                                  project.image ||
+                                  "https://via.placeholder.com/300x200"
+                                }
                                 alt={project.name}
                               />
                             ) : (
