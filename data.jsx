@@ -125,7 +125,7 @@ export const profileViewProjects = [
     github: "https://github.com/janedoe/crypto-dashboard",
     dueDate: "2024-12-20",
     participants: 3,
-    image: "../../src/assets/cryptodash.avif",
+    image: "assets/cryptodash.avif",
   },
   {
     id: 2,
@@ -136,7 +136,7 @@ export const profileViewProjects = [
     github: "https://github.com/janedoe/portfolio",
     dueDate: "2024-11-10",
     participants: 1,
-    image: "../../src/assets/portfolioImage.avif",
+    image: "assets/portfolioImage.avif",
   },
   {
     id: 3,
@@ -148,7 +148,7 @@ export const profileViewProjects = [
     github: "https://github.com/janedoe/ecommerce-storefront",
     dueDate: "2025-01-05",
     participants: 4,
-    image: "../../src/assets/ecommerce.avif",
+    image: "/assets/ecommerce.avif",
   },
   {
     id: 4,
@@ -160,7 +160,7 @@ export const profileViewProjects = [
     github: "https://github.com/janedoe/task-manager",
     dueDate: "2025-02-14",
     participants: 2,
-    image: "../../src/assets/task.avif",
+    image: "/assets/task.avif",
   },
   {
     id: 5,
@@ -172,7 +172,7 @@ export const profileViewProjects = [
     github: "https://github.com/janedoe/blog-cms",
     dueDate: "2025-01-30",
     participants: 3,
-    image: "../../src/assets/blog.avif",
+    image: "/assets/blog.avif",
   },
   {
     id: 6,
@@ -183,7 +183,7 @@ export const profileViewProjects = [
     github: "https://github.com/janedoe/fitness-tracker",
     dueDate: "2025-03-10",
     participants: 2,
-    image: "../../src/assets/fitness.avif",
+    image: "/assets/fitness.avif",
   },
   {
     id: 7,
@@ -195,7 +195,7 @@ export const profileViewProjects = [
     github: "https://github.com/janedoe/movie-search",
     dueDate: "2024-12-05",
     participants: 1,
-    image: "../../src/assets/movie.avif",
+    image: "/assets/movie.avif",
   },
   {
     id: 8,
@@ -207,7 +207,7 @@ export const profileViewProjects = [
     github: "https://github.com/janedoe/freelancer-dashboard",
     dueDate: "2025-04-01",
     participants: 2,
-    image: "../../src/assets/freelance.png",
+    image: "/assets/freelance.png",
   },
   {
     id: 9,
@@ -219,7 +219,7 @@ export const profileViewProjects = [
     github: "https://github.com/janedoe/weather-app",
     dueDate: "2025-01-18",
     participants: 2,
-    image: "../../src/assets/weather.avif",
+    image: "/assets/weather.avif",
   },
   {
     id: 10,
@@ -231,7 +231,7 @@ export const profileViewProjects = [
     github: "https://github.com/janedoe/recipe-book",
     dueDate: "2025-02-22",
     participants: 1,
-    image: "../../src/assets/recipe.avif",
+    image: "/assets/recipe.avif",
   },
   {
     id: 11,
@@ -243,7 +243,7 @@ export const profileViewProjects = [
     github: "https://github.com/janedoe/chat-app",
     dueDate: "2025-03-05",
     participants: 3,
-    image: "../../src/assets/chat.jpg",
+    image: "/assets/chat.jpg",
   },
   {
     id: 12,
@@ -255,7 +255,7 @@ export const profileViewProjects = [
     github: "https://github.com/janedoe/invoice-generator",
     dueDate: "2024-12-28",
     participants: 2,
-    image: "../../src/assets/invoice.png",
+    image: "/assets/invoice.png",
   },
   {
     id: 13,

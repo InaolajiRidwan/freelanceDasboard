@@ -41,7 +41,7 @@ import {
 
 import { data, data2 } from "../../data";
 
-console.log(data, data2);
+
 
 export default function EarningSummary() {
   return (

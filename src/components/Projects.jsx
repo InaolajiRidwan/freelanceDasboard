@@ -58,7 +58,7 @@ export default function Projects() {
                             <CardBody>
                               {project.image ? (
                                 <Image
-                                  boxSize={{ base: "3200px", md: "300px" }}
+                                  boxSize={{ base: "300px", md: "250px" }}
                                   src={project.image}
                                   objectFit="cover"
                                   borderRadius="md"
@@ -99,7 +99,7 @@ export default function Projects() {
 
                             {project.participants ? <Divider /> : null}
 
-                            <CardFooter>
+                            {/* <CardFooter > 
                               <ButtonGroup spacing={6}>
                                 {project.participants ? (
                                   <Button>
@@ -136,6 +136,53 @@ export default function Projects() {
                                   <Button visibility="hidden">
                                     Placeholder
                                   </Button> // keeps spacing
+                                )}
+                              </ButtonGroup>
+                            </CardFooter> */}
+
+                            <CardFooter>
+                              <ButtonGroup
+                                spacing={{ base: 2, md: 4 }}
+                                flexWrap="wrap"
+                                justifyContent={{
+                                  base: "center",
+                                  md: "space-between",
+                                }}
+                              >
+                                {project.participants ? (
+                                  <Button
+                                    fontSize={{
+                                      base: "xs",
+                                      md: "sm",
+                                      lg: "md",
+                                    }}
+                                    p={{ base: 2, md: 4 }}
+                                  >
+                                    Participants: {project.participants}
+                                  </Button>
+                                ) : (
+                                  <Button visibility="hidden">
+                                    Placeholder
+                                  </Button>
+                                )}
+
+                                {project.dueDate ? (
+                                  <Button
+                                    flexDir="column"
+                                    fontSize={{
+                                      base: "xs",
+                                      md: "sm",
+                                      lg: "md",
+                                    }}
+                                    p={{ base: 2, md: 4 }}
+                                  >
+                                    <Text>Due Date:</Text>
+                                    <Text>{project.dueDate}</Text>
+                                  </Button>
+                                ) : (
+                                  <Button visibility="hidden">
+                                    Placeholder
+                                  </Button>
                                 )}
                               </ButtonGroup>
                             </CardFooter>
