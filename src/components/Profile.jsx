@@ -1,4 +1,6 @@
-import React, { lazy, Suspense } from "react";
+// Description: This file contains the Profile component which displays user profile information, conversations, earnings overview, and project summaries.
+
+import { lazy } from "react";
 import {
   Box,
   Grid,
@@ -16,7 +18,7 @@ import {
   VStack,
 } from "@chakra-ui/react";
 
-import ProfileCard from "./ProfileCard.jsx";
+// import ProfileCard from "./ProfileCard.jsx";
 import { profileInformation } from "../../data";
 import { FaGithub } from "react-icons/fa";
 import { FaFacebook } from "react-icons/fa";
@@ -35,6 +37,8 @@ import {
   PieChart,
   Pie,
 } from "recharts";
+
+const ProfileCard = lazy(() => import("./ProfileCard.jsx"));
 
 export default function Profile() {
   const colors = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "red", "pink"];
@@ -127,12 +131,12 @@ export default function Profile() {
                         Biography
                       </Text>
                       <Text pt="1" fontSize="lg" width="100%" m="auto">
-                        {profileInformation.bio}
+                        {profileInformation?.bio}
                       </Text>
                     </Box>
                     <Box>
                       <Heading size="md" textTransform="uppercase">
-                        FULL NAME: {profileInformation.name}
+                        FULL NAME: {profileInformation?.name}
                       </Heading>
                       <Text
                         pt="2"
@@ -140,7 +144,7 @@ export default function Profile() {
                         textTransform="uppercase"
                         fontWeight="extrabold"
                       >
-                        ROLE: {profileInformation.role}
+                        ROLE: {profileInformation?.role}
                       </Text>
                       <Text
                         pt="2"
@@ -148,7 +152,7 @@ export default function Profile() {
                         textTransform="uppercase"
                         fontWeight="extrabold"
                       >
-                        MOBILE: {profileInformation.phone}
+                        MOBILE: {profileInformation?.phone}
                       </Text>
                     </Box>
                     <Box>
@@ -222,15 +226,19 @@ export default function Profile() {
                                   src={profile.avatar}
                                   alt="Dan Abramov"
                                 />
-                                <Text as="h3" pt="4">{profile.subject}</Text>
+                                <Text as="h3" pt="4">
+                                  {profile.subject}
+                                </Text>
                                 <Box as="div">
-                                  <Text as="p" pt="5">{profile.message}</Text>
+                                  <Text as="p" pt="5">
+                                    {profile.message}
+                                  </Text>
                                 </Box>
                               </Box>
 
                               <Button
                                 bg={profile.read ? "blue.500" : "gray.300"}
-                                p={{base: "10px" , lg: "30px"}}
+                                p={{ base: "10px", lg: "30px" }}
                               >
                                 {profile.read ? "reply" : "read"}
                               </Button>

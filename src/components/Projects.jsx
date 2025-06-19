@@ -51,84 +51,100 @@ export default function Projects() {
                     }}
                     gap={7}
                   >
-                    {profileViewProjects.map((project) => {
-                      return (
-                        <Card key={project.id} maxW="sm" shadow="xl">
-                          <CardBody>
-                            {project.image ? (
-                              <Image
-                                boxSize={{ base: "300px" }}
-                                src={project.image}
-                                alt={project.name}
-                              />
-                            ) : (
-                              <Center w="100%" h="100%">
-                                <Icon
-                                  as={FiPlus}
-                                  boxSize={12}
-                                  color="gray.400"
+                    {profileViewProjects?.length > 0 ? (
+                      profileViewProjects.map((project) => {
+                        return (
+                          <Card key={project.id} maxW="sm" shadow="xl">
+                            <CardBody>
+                              {project.image ? (
+                                <Image
+                                  boxSize={{ base: "3200px", md: "300px" }}
+                                  src={project.image}
+                                  objectFit="cover"
+                                  borderRadius="md"
+                                  fallbackSrc="https://via.placeholder.com/300"
+                                  loading="lazy"
+                                  alt={project.name || "Project Image"}
                                 />
-                              </Center>
-                            )}
+                              ) : (
+                                <Center w="100%" h="100%">
+                                  <Icon
+                                    as={FiPlus}
+                                    boxSize={12}
+                                    color="gray.400"
+                                  />
+                                </Center>
+                              )}
 
-                            <Stack mt="6" spacing="3">
-                              <Heading size="md">
-                                {project.name ? (
-                                  project.name
+                              <Stack mt="6" spacing="3">
+                                <Heading size="md">
+                                  {project.name ? (
+                                    project.name
+                                  ) : (
+                                    <Text
+                                      as="p"
+                                      textAlign="center"
+                                      textTransform="uppercase"
+                                    >
+                                      Add new Project
+                                    </Text>
+                                  )}
+                                </Heading>
+                                <Text>
+                                  {project.description ||
+                                    "No description available"}
+                                </Text>
+                              </Stack>
+                            </CardBody>
+
+                            {project.participants ? <Divider /> : null}
+
+                            <CardFooter>
+                              <ButtonGroup spacing={6}>
+                                {project.participants ? (
+                                  <Button>
+                                    Participants: {project.participants}
+                                  </Button>
                                 ) : (
-                                  <Text
-                                    as="p"
-                                    textAlign="center"
-                                    textTransform="uppercase"
-                                  >
-                                    Add new Project
-                                  </Text>
+                                  <Button visibility="hidden">
+                                    Placeholder
+                                  </Button> // keeps spacing
                                 )}
-                              </Heading>
-                              <Text>{project.description}</Text>
-                            </Stack>
-                          </CardBody>
-                          {project.participants ? <Divider /> : null}
 
-                          <CardFooter>
-                            <ButtonGroup spacing={6}>
-                              {project.participants ? (
-                                <Button>
-                                  Participants: {project.participants}
-                                </Button>
-                              ) : (
-                                <Button visibility="hidden">Placeholder</Button> // keeps spacing
-                              )}
-
-                              {project.dueDate ? (
-                                <Button flexDir="column">
-                                  <Text
-                                    fontSize={{
-                                      base: "8px",
-                                      lg: "10px",
-                                      xl: "16px",
-                                    }}
-                                  >
-                                    Due Date:
-                                  </Text>
-                                  <Text
-                                    fontSize={{
-                                      base: "8px",
-                                      lg: "10px",
-                                      xl: "16px",
-                                    }}
-                                  >
-                                    {project.dueDate}
-                                  </Text>
-                                </Button>
-                              ) : (
-                                <Button visibility="hidden">Placeholder</Button> // keeps spacing
-                              )}
-                            </ButtonGroup>
-                          </CardFooter>
-                        </Card>
-                      );
-                    })}
+                                {project.dueDate ? (
+                                  <Button flexDir="column">
+                                    <Text
+                                      fontSize={{
+                                        base: "8px",
+                                        lg: "10px",
+                                        xl: "16px",
+                                      }}
+                                    >
+                                      Due Date:
+                                    </Text>
+                                    <Text
+                                      fontSize={{
+                                        base: "8px",
+                                        lg: "10px",
+                                        xl: "16px",
+                                      }}
+                                    >
+                                      {project.dueDate}
+                                    </Text>
+                                  </Button>
+                                ) : (
+                                  <Button visibility="hidden">
+                                    Placeholder
+                                  </Button> // keeps spacing
+                                )}
+                              </ButtonGroup>
+                            </CardFooter>
+                          </Card>
+                        );
+                      })
+                    ) : (
+                      <Text> No projects available</Text>
+                    )}
                   </Grid>
                 </GridItem>
               </Grid>

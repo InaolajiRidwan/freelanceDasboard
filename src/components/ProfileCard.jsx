@@ -10,7 +10,7 @@ export default function ProfileCard() {
     }, 1000);
 
     return () => clearInterval(timer);
-  }, [setTime]);
+  }, []);
   return (
     <Box as="div" color="black" bg="white" shadow="lg" p="7" rounded="lg">
       <Flex alignItems="center" direction={{ base: "column", lg: "row" }}>
@@ -24,9 +24,8 @@ export default function ProfileCard() {
             <Image
               borderRadius="full"
               boxSize="100px"
-              src={profileInformation.avatar}
-              alt="Dan Abramov"
-              
+              src={profileInformation?.avatar || "default-avatar.png"}
+              alt={`profile picture of ${profileInformation?.name || "Anonymous User"}`}
             />
           </Box>
           <Box>
@@ -34,7 +33,7 @@ export default function ProfileCard() {
               {time?.getHours() < 12 ? "Good Morning 🌞" : "Good Afternoon 🌙"}
             </Text>
             <Text as="h1" fontWeight="extrabold" fontSize="24px">
-              {profileInformation.name}
+              {profileInformation?.name || "Anonymous User"}
             </Text>
           </Box>
         </Box>

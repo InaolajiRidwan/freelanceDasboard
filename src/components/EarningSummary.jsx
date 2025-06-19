@@ -11,9 +11,15 @@ import {
   Spacer,
   Stack,
   CardHeader,
-  CardFooter,
   Heading,
   StackDivider,
+  Tabs,
+  TabList,
+  TabPanels,
+  Tab,
+  TabPanel,
+  Button,
+  CardFooter,
 } from "@chakra-ui/react";
 import { profileInformation } from "../../data";
 import { RiMastercardLine } from "react-icons/ri";
@@ -31,103 +37,22 @@ import {
   ResponsiveContainer,
   ComposedChart,
   Line,
-  Area,
 } from "recharts";
 
-const data = [
-  {
-    name: "Page A",
-    uv: 590,
-    pv: 800,
-    amt: 1400,
-  },
-  {
-    name: "Page B",
-    uv: 868,
-    pv: 967,
-    amt: 1506,
-  },
-  {
-    name: "Page C",
-    uv: 1397,
-    pv: 1098,
-    amt: 989,
-  },
-  {
-    name: "Page D",
-    uv: 1480,
-    pv: 1200,
-    amt: 1228,
-  },
-  {
-    name: "Page E",
-    uv: 1520,
-    pv: 1108,
-    amt: 1100,
-  },
-  {
-    name: "Page F",
-    uv: 1400,
-    pv: 680,
-    amt: 1700,
-  },
-];
+import { data, data2 } from "../../data";
 
-const data2 = [
-  {
-    name: "Page A",
-
-    pv: 2400,
-    amt: 2400,
-  },
-  {
-    name: "Page B",
-
-    pv: 1398,
-    amt: 2210,
-  },
-  {
-    name: "Page C",
-
-    pv: 9800,
-    amt: 2290,
-  },
-  {
-    name: "Page D",
-
-    pv: 3908,
-    amt: 2000,
-  },
-  {
-    name: "Page E",
-
-    pv: 4800,
-    amt: 2181,
-  },
-  {
-    name: "Page F",
-
-    pv: 3800,
-    amt: 2500,
-  },
-  {
-    name: "Page G",
-
-    pv: 4300,
-    amt: 2100,
-  },
-];
+console.log(data, data2);
 
 export default function EarningSummary() {
   return (
     <Box as="section">
       <Grid templateColumns="1fr">
         <GridItem>
-          <Grid templateColumns={{ base: "1fr", md:"1fr", lg: "repeat(2, 1fr)" }} gap={6}>
+          <Grid templateColumns={{ base: "1fr", md: "1fr", xl: "1fr" }} gap={6}>
             {/* Left Column: Card and Transaction Summary */}
             <GridItem>
               <Grid
-                templateColumns={{ base: "1fr", lg: "repeat(2, 1fr)" }}
+                templateColumns={{ base: "1fr", xl: "repeat(2, 1fr)" }}
                 gap={6}
               >
                 {/* Credit Card */}
@@ -151,6 +76,7 @@ export default function EarningSummary() {
                               fontSize="24px"
                               as={RiMastercardLine}
                               color="white"
+                              aria-label="Mastercard Icon"
                             />
                           </Box>
                         </Flex>
@@ -204,7 +130,7 @@ export default function EarningSummary() {
                 {/* Salary and PayPal Cards */}
                 <GridItem p={4}>
                   <Grid
-                    templateColumns={{ base: "1fr", sm: "repeat(2, 1fr)" }}
+                    templateColumns={{ base: "1fr", md: "repeat(2, 1fr)" }}
                     gap={6}
                   >
                     {/* Salary Card */}
@@ -216,7 +142,11 @@ export default function EarningSummary() {
                         h="100%"
                       >
                         <CardHeader textAlign="center">
-                          <Icon fontSize="40px" as={CiCreditCard1} />
+                          <Icon
+                            fontSize="40px"
+                            as={CiCreditCard1}
+                            aria-label="Credit Card"
+                          />
                           <Heading size="md" mt={2}>
                             Salary
                           </Heading>
@@ -245,7 +175,11 @@ export default function EarningSummary() {
                         h="100%"
                       >
                         <CardHeader textAlign="center">
-                          <Icon fontSize="40px" as={FaPaypal} />
+                          <Icon
+                            fontSize="40px"
+                            as={FaPaypal}
+                            aria-label="PayPal Icon"
+                          />
                           <Heading size="md" mt={2}>
                             Paypal
                           </Heading>
@@ -280,83 +214,181 @@ export default function EarningSummary() {
                 Recent Projects
               </Text>
               <Grid templateColumns="1fr" gap={4}>
-                {earningSummary.recentTransactions.map((transaction) => (
-                  <GridItem key={transaction.project}>
-                    <Card
-                      bg="transparent"
-                      color="white"
-                      border="1px"
-                      borderColor="whiteAlpha.200"
-                      borderRadius="lg"
-                    >
-                      <CardHeader>
-                        <Heading size="md">{transaction.project}</Heading>
-                      </CardHeader>
-                      <CardBody>
-                        <Stack divider={<StackDivider />} spacing={4}>
-                          <Flex justify="space-between" align="center">
-                            <Box>
-                              <Text fontSize="sm">{transaction.client}</Text>
-                              <Text fontSize="sm" fontWeight="bold">
-                                ${transaction.amount}
-                              </Text>
-                            </Box>
-                            <Box textAlign="right">
-                              <Text fontSize="sm">{transaction.status}</Text>
-                              <Text fontSize="sm">{transaction.date}</Text>
-                            </Box>
-                          </Flex>
-                        </Stack>
-                      </CardBody>
-                    </Card>
-                  </GridItem>
-                ))}
+                {earningSummary?.recentTransactions?.length > 0 ? (
+                  earningSummary?.recentTransactions.map((transaction) => (
+                    <GridItem key={transaction.project}>
+                      <Card
+                        bg="transparent"
+                        color="white"
+                        border="1px"
+                        borderColor="whiteAlpha.200"
+                        borderRadius="lg"
+                      >
+                        <CardHeader>
+                          <Heading size="md">{transaction.project}</Heading>
+                        </CardHeader>
+                        <CardBody>
+                          <Stack divider={<StackDivider />} spacing={4}>
+                            <Flex justify="space-between" align="center">
+                              <Box>
+                                <Text fontSize="sm">{transaction.client}</Text>
+                                <Text fontSize="sm" fontWeight="bold">
+                                  ${transaction.amount}
+                                </Text>
+                              </Box>
+                              <Box textAlign="right">
+                                <Text color={transaction.status === "Incomplete" ? "red.500" : "white"}fontSize="sm">{transaction.status}</Text>
+                                <Text fontSize="sm">{transaction.date}</Text>
+                              </Box>
+                            </Flex>
+                          </Stack>
+                        </CardBody>
+                      </Card>
+                    </GridItem>
+                  ))
+                ) : (
+                  <Text>No recent transactions available.</Text>
+                )}
               </Grid>
             </GridItem>
           </Grid>
         </GridItem>
 
+        <Box as="div" mt="50px">
+          <Tabs variant="enclosed">
+            <TabList>
+              {" "}
+              <Tab>Project Earnings</Tab>
+              <Tab>Monthly Earnings</Tab>
+            </TabList>
+
+            <TabPanels>
+              <TabPanel>
+                <Box>
+                  <Flex
+                    gap={4}
+                    flexDirection={{ base: "column", lg: "row" }}
+                    justifyContent={{
+                      base: "center",
+                      md: "center",
+                      lg: "flex-start",
+                    }}
+                  >
+                    {earningSummary?.projectEarnings?.length > 0 ? (
+                      earningSummary?.projectEarnings.map((earning) => (
+                        <Card align="center" shadow="lg">
+                          <CardHeader>
+                            <Heading size="md">{earning.project}</Heading>
+                          </CardHeader>
+
+                          <CardFooter>
+                            <Button
+                              _hover={{ bg: "blue.900" }}
+                              color="white"
+                              bg="#101c44"
+                            >
+                              💰{earning.amount}
+                            </Button>
+                          </CardFooter>
+                        </Card>
+                      ))
+                    ) : (
+                      <Text>No monthly earnings data available.</Text>
+                    )}
+                  </Flex>
+                </Box>
+              </TabPanel>
+
+              <TabPanel>
+                <Box py="4">
+                  <Flex
+                    gap={4}
+                    flexDirection={{ base: "column", lg: "row" }}
+                    justifyContent={{
+                      base: "center",
+                      md: "center",
+                      lg: "flex-start",
+                    }}
+                  >
+                    {earningSummary?.monthlyEarnings?.length > 0 ? (
+                      earningSummary.monthlyEarnings.map((earning, index) => (
+                        <Card
+                          key={index}
+                          minW="200px"
+                          align="center"
+                          shadow="lg"
+                        >
+                          <CardHeader>
+                            <Heading size="md">🗓️{earning.month}</Heading>
+                          </CardHeader>
+                          <CardFooter>
+                            <Button
+                              _hover={{ bg: "blue.900" }}
+                              color="white"
+                              bg="#101c44"
+                            >
+                              💰{earning.amount}
+                            </Button>
+                          </CardFooter>
+                        </Card>
+                      ))
+                    ) : (
+                      <Text>No monthly earnings data available.</Text>
+                    )}
+                  </Flex>
+                </Box>
+              </TabPanel>
+            </TabPanels>
+          </Tabs>
+        </Box>
+
         <GridItem mt="50px">
-          <Grid templateColumns={{base: "1fr", lg:"repeat(2, 1fr)"}} gap={4}>
+          <Grid templateColumns={{ base: "1fr", lg: "repeat(2, 1fr)" }} gap={4}>
             <GridItem>
-              <ResponsiveContainer width="100%" height={400}>
-                <ComposedChart
-                  data={data}
-                  margin={{ top: 20, right: 20, bottom: 20, left: 20 }}
-                >
-                  <CartesianGrid stroke="#f5f5f5" />
-                  <XAxis dataKey="name" scale="band" />
-                  <YAxis />
-                  <Tooltip />
-                  <Legend />
-                  <Bar dataKey="uv" barSize={20} fill="#413ea0" />
-                  <Line type="monotone" dataKey="uv" stroke="#ff7300" />
-                </ComposedChart>
-              </ResponsiveContainer>
+              <Box width="100%" height="400px">
+                <ResponsiveContainer width="100%" height="100%">
+                  <ComposedChart
+                    data={data}
+                    width={500}
+                    height={300}
+                    margin={{ top: 20, right: 20, bottom: 20, left: 20 }}
+                  >
+                    <CartesianGrid stroke="#f5f5f5" />
+                    <XAxis dataKey="name" />
+                    <YAxis />
+                    <Tooltip />
+                    <Legend />
+                    <Bar dataKey="uv" barSize={20} fill="#413ea0" />
+                    <Line type="monotone" dataKey="uv" stroke="#ff7300" />
+                  </ComposedChart>
+                </ResponsiveContainer>
+              </Box>
             </GridItem>
 
             <GridItem>
-              <ResponsiveContainer width="100%" height="100%">
-                <BarChart
-                  width={500}
-                  height={300}
-                  data={data2}
-                  margin={{
-                    top: 20,
-                    right: 30,
-                    left: 20,
-                    bottom: 5,
-                  }}
-                >
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="name" />
-                  <YAxis />
-                  <Tooltip />
-                  <Legend />
-                  <Bar dataKey="pv" stackId="a" fill="#8884d8" />
-                  <Bar dataKey="uv" stackId="a" fill="#82ca9d" />
-                </BarChart>
-              </ResponsiveContainer>
+              <Box width="100%" height="400px">
+                <ResponsiveContainer width="100%" height="100%">
+                  <BarChart
+                    width={500}
+                    height={300}
+                    data={data2}
+                    margin={{
+                      top: 20,
+                      right: 30,
+                      left: 20,
+                      bottom: 5,
+                    }}
+                  >
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="name" />
+                    <YAxis />
+                    <Tooltip />
+                    <Legend />
+                    <Bar dataKey="pv" stackId="a" fill="#8884d8" />
+                    <Bar dataKey="uv" stackId="a" fill="#82ca9d" />
+                  </BarChart>
+                </ResponsiveContainer>
+              </Box>
             </GridItem>
           </Grid>
         </GridItem>
