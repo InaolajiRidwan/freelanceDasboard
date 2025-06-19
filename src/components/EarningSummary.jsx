@@ -41,8 +41,6 @@ import {
 
 import { data, data2 } from "../../data";
 
-
-
 export default function EarningSummary() {
   return (
     <Box as="section">
@@ -237,7 +235,16 @@ export default function EarningSummary() {
                                 </Text>
                               </Box>
                               <Box textAlign="right">
-                                <Text color={transaction.status === "Incomplete" ? "red.500" : "white"}fontSize="sm">{transaction.status}</Text>
+                                <Text
+                                  color={
+                                    transaction.status === "Incomplete"
+                                      ? "red.500"
+                                      : "white"
+                                  }
+                                  fontSize="sm"
+                                >
+                                  {transaction.status}
+                                </Text>
                                 <Text fontSize="sm">{transaction.date}</Text>
                               </Box>
                             </Flex>
@@ -265,22 +272,20 @@ export default function EarningSummary() {
             <TabPanels>
               <TabPanel>
                 <Box>
-                  <Flex
-                    gap={4}
-                    flexDirection={{ base: "column", lg: "row" }}
-                    justifyContent={{
-                      base: "center",
-                      md: "center",
-                      lg: "flex-start",
+                  <Grid
+                    templateColumns={{
+                      base: "1fr", // Single column for small screens
+                      sm: "repeat(2, 1fr)", // Two columns for small screens
+                      md: "repeat(3, 1fr)", // Three columns for medium screens
                     }}
+                    gap={6}
                   >
                     {earningSummary?.projectEarnings?.length > 0 ? (
-                      earningSummary?.projectEarnings.map((earning) => (
-                        <Card align="center" shadow="lg">
+                      earningSummary?.projectEarnings.map((earning, index) => (
+                        <Card key={index} align="center" shadow="lg">
                           <CardHeader>
                             <Heading size="md">{earning.project}</Heading>
                           </CardHeader>
-
                           <CardFooter>
                             <Button
                               _hover={{ bg: "blue.900" }}
@@ -295,20 +300,19 @@ export default function EarningSummary() {
                     ) : (
                       <Text>No monthly earnings data available.</Text>
                     )}
-                  </Flex>
+                  </Grid>
                 </Box>
               </TabPanel>
 
               <TabPanel>
                 <Box py="4">
-                  <Flex
-                    gap={4}
-                    flexDirection={{ base: "column", lg: "row" }}
-                    justifyContent={{
-                      base: "center",
-                      md: "center",
-                      lg: "flex-start",
+                  <Grid
+                    templateColumns={{
+                      base: "1fr", // Single column for small screens
+                      sm: "repeat(2, 1fr)", // Two columns for small screens
+                      md: "repeat(3, 1fr)", // Three columns for medium screens
                     }}
+                    gap={6}
                   >
                     {earningSummary?.monthlyEarnings?.length > 0 ? (
                       earningSummary.monthlyEarnings.map((earning, index) => (
@@ -335,7 +339,7 @@ export default function EarningSummary() {
                     ) : (
                       <Text>No monthly earnings data available.</Text>
                     )}
-                  </Flex>
+                  </Grid>
                 </Box>
               </TabPanel>
             </TabPanels>

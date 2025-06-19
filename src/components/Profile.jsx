@@ -112,7 +112,7 @@ export default function Profile() {
         {/* Profile Cards Section */}
         <GridItem>
           <Grid templateColumns={{ base: "1fr", xl: "repeat(3, 1fr)" }} gap={4}>
-            <GridItem bg="white" shadow="lg" rounded="lg">
+            {/* <GridItem  bg="white" maxH="100%" shadow="lg" rounded="lg">
               <Card>
                 <CardHeader>
                   <Heading
@@ -201,7 +201,112 @@ export default function Profile() {
                   </Text>
                 </GridItem>
               </Grid>
-            </GridItem>
+            </GridItem> */}
+
+<GridItem maxH="100%" shadow="lg" rounded="lg">
+  <Card>
+    <CardHeader>
+      <Heading
+        pt="2"
+        fontSize={{ base: "md", md: "lg" }} // Responsive font size
+        textTransform="uppercase"
+        fontWeight="extrabold"
+      >
+        Profile Information
+      </Heading>
+    </CardHeader>
+    <CardBody>
+      <Stack spacing={4}>
+        <Box width="100%">
+          <Text textTransform="uppercase" fontWeight="extrabold">
+            Biography
+          </Text>
+          <Text
+            pt="1"
+            fontSize={{ base: "sm", md: "lg" }} // Responsive font size
+            width="100%"
+            m="auto"
+          >
+            {profileInformation?.bio}
+          </Text>
+        </Box>
+        <Box>
+          <Heading size="md" textTransform="uppercase">
+            FULL NAME: {profileInformation?.name}
+          </Heading>
+          <Text
+            pt="2"
+            fontSize={{ base: "sm", md: "md" }}
+            textTransform="uppercase"
+            fontWeight="extrabold"
+          >
+            ROLE: {profileInformation?.role}
+          </Text>
+          <Text
+            pt="2"
+            fontSize={{ base: "sm", md: "md" }}
+            textTransform="uppercase"
+            fontWeight="extrabold"
+          >
+            MOBILE: {profileInformation?.phone}
+          </Text>
+        </Box>
+        <Box>
+          <Heading
+            pt="2"
+            fontSize={{ base: "sm", md: "md" }}
+            textTransform="uppercase"
+            fontWeight="extrabold"
+          >
+            LOCATION: {profileInformation?.location}
+          </Heading>
+          <Text
+            pt="2"
+            fontSize={{ base: "sm", md: "lg" }}
+            textTransform="uppercase"
+            fontWeight="extrabold"
+          >
+            Social: 
+            <Icon as={FaGithub} aria-label="GitHub" />{" "}
+            <Icon as={FaFacebook} color="blue" aria-label="Facebook" />{" "}
+            <Icon as={FaLinkedin} aria-label="LinkedIn" />{" "}
+            <Icon as={FaTwitter} aria-label="Twitter" />
+          </Text>
+        </Box>
+      </Stack>
+    </CardBody>
+  </Card>
+  <Grid
+    templateColumns={{
+      base: "1fr", // Single column for small screens
+      md: "repeat(3, 1fr)", // Three columns for medium screens
+    }}
+    gap={6}
+    p={4}
+  >
+    <Box shadow="xl" p={4} cursor="pointer" textAlign="center">
+      <Text>Total Earnings</Text>
+      <Text fontSize="lg" fontWeight="bold">$53,878</Text>
+      <Text color="green.500" fontWeight="bold">
+        +3.4%
+      </Text>
+    </Box>
+    <Box shadow="xl" p={4} cursor="pointer" textAlign="center">
+      <Text>Total Users</Text>
+      <Text fontSize="lg" fontWeight="bold">$3,478</Text>
+      <Text color="green.500" fontWeight="bold">
+        +5.4%
+      </Text>
+    </Box>
+    <Box shadow="xl" p={4} cursor="pointer" textAlign="center">
+      <Text>Today's Client</Text>
+      <Text fontSize="lg" fontWeight="bold">$53,878</Text>
+      <Text color="red.500" fontWeight="bold">
+        -1.4%
+      </Text>
+    </Box>
+  </Grid>
+</GridItem>
 
             <GridItem shadow="lg" bg="white" rounded="lg">
               <Card>
@@ -313,6 +418,7 @@ export default function Profile() {
             </GridItem>
           </Grid>
         </GridItem>
+        
 
         {/* Footer / Note Section */}
 

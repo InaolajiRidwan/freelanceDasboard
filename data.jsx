@@ -46,26 +46,7 @@ export const profileConversations = [
     date: "2025-06-07",
     read: false,
   },
-  {
-    id: 4,
-    sender: "Client B",
-    avatar: "https://randomuser.me/api/portraits/men/12.jpg",
-    subject: "Invoice request",
-    message:
-      "Hi Jane, could you please resend the invoice for the last milestone we completed in May? Our finance team is requesting a breakdown for documentation. Also, let me know if you’ve already started on the next feature batch.",
-    date: "2025-06-06",
-    read: true,
-  },
-  {
-    id: 5,
-    sender: "QA - Janet",
-    avatar: "https://randomuser.me/api/portraits/women/50.jpg",
-    subject: "Bug report summary",
-    message:
-      "Here’s the summary of issues found during testing: The mobile navbar overlaps content on scroll, the dark mode toggle doesn’t persist, and the contact form occasionally fails validation. Please prioritize these for the next patch.",
-    date: "2025-06-04",
-    read: false,
-  },
+ 
 ];
 
 // Projects Summary
